@@ -9,9 +9,9 @@ This is a weather app that shows the current temperature for the user input loca
 ## Developer Notes:
 
 ### Future features:
--geolocation for automatically determining location
--options for viewing multiday forecasts (graphs, charts, and other data visualizations)
--icons for visualizing the weather
+#### geolocation for automatically determining location
+#### options for viewing multiday forecasts (graphs, charts, and other data visualizations)
+#### icons for visualizing the weather
 
 ### Dependencies:
 Besides React, the only other dependency I used was css-toggle-switch, which was a quick and dirty way of getting a functional and aesthetically pleasing toggle button.
