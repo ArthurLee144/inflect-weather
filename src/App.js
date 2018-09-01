@@ -21,7 +21,6 @@ class App extends React.Component {
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=${units}`);
-
     const data = await api_call.json();
 
     if (city && country && data) {
@@ -39,37 +38,38 @@ class App extends React.Component {
         error: "Please enter your location"
       });
     }
-    console.log(data);
   }
 
   toggleUnits = () => {
     let currentUnits = this.state.units;
     let currentTemp = this.state.temperature;
-
     if (currentUnits === "metric" && this.state.temperature) {
-      setTimeout(prevState => this.setState(prevState => ({units: "imperial", temperature: Math.round((100*(currentTemp*(9/5)+32)))/100}), function() {
-        console.log(this.state.units)})
-      , 300)}
-      else {
-        setTimeout(prevState => this.setState(prevState => ({units: "metric", temperature: Math.round((100*(currentTemp - 32) * (5/9)))/100}), function() {
-        console.log(this.state.units)})
-      , 300)}
+      setTimeout(prevState => this.setState(prevState =>
+        ({units: "imperial", temperature: Math.round((100*(currentTemp*(9/5)+32)))/100})
+        )
+      , 300)
+    } else {
+      setTimeout(prevState => this.setState(prevState =>
+        ({units: "metric", temperature: Math.round((100*(currentTemp - 32) * (5/9)))/100})
+        )
+      , 300)
+      }
   }
 
   render() {
     let units;
     if (this.state.units === "metric") {
-      units = "Celsius"
+      units = "Celsius";
     } else {
-      units = "Fahrenheit"
+      units = "Fahrenheit";
     }
     return (
       <div className="home">
         <h1>Weather Genie</h1>
         <p>Enter your city and country to get the current temperature</p>
-        <p>
+        <div className="form">
         <Form getWeather={this.getWeather} />
-        </p>
+        </div>
         <Weather
           temperature={this.state.temperature}
           city={this.state.city}
